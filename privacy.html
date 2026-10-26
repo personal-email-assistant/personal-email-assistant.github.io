@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy policy · Personal Email Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <nav><a href="./">Home</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of service</a></nav>
+  </header>
+  <main>
+    <h1>Privacy policy</h1>
+    <p class="subtitle">Personal Email Assistant · Effective October 25, 2026</p>
+
+    <p>Personal Email Assistant ("the app") is a private tool that its developer uses with the developer's configured personal, nonprofit, and community mailboxes, which the developer is authorized to access. It is not offered to the public, and it has not been verified by Google. This policy explains what data the app accesses, how it is used, stored, and shared, and how access can be revoked.</p>
+
+    <h2>How the app works</h2>
+    <p>The app is a local server that runs on the developer's computer. It connects directly to Google and Microsoft, and returns results to an AI assistant application ("AI client") that the developer uses on the same computer. The AI client sends those results to its AI service to produce the responses the developer asks for.</p>
+
+    <h2>Data the app accesses</h2>
+    <ul>
+      <li><strong>Google accounts</strong> (Gmail and Google Workspace), through the Gmail API with the <code>https://www.googleapis.com/auth/gmail.modify</code> scope, which supports reading mail, saving drafts, and changing message organization.</li>
+      <li><strong>Microsoft accounts</strong> (Outlook.com and Microsoft 365), through Microsoft Graph with the delegated permissions <code>User.Read</code>, used for identity checks, and <code>Mail.ReadWrite</code>, used for reading mail, saving drafts, and organizing messages.</li>
+    </ul>
+    <p>Mail data includes message and conversation identifiers; headers such as sender, recipients, subject, and date; snippets and bodies; read status; Gmail labels or Microsoft folders; drafts; and attachment metadata (names, sizes, identifiers, content types, and, where available, whether an attachment is inline). The app does not retrieve attachment contents. It also processes account identity information and OAuth credentials. It does not call contacts, calendar, or cloud-file APIs.</p>
+    <p>The account's email address (and, for Microsoft, its sign-in name) is used to verify that each connection belongs to the intended mailbox. The configured mailbox address also identifies the source mailbox in results and in saved operation records, helps distinguish sent from received mail, and is the sender address on Gmail drafts.</p>
+
+    <h2>How the data is used</h2>
+    <ul>
+      <li>To show the developer the developer's own mail, and to prepare briefings about requests, commitments, deadlines, and follow-ups, including briefings run on a schedule the developer has set up.</li>
+      <li>To track follow-up status for messages the developer chooses to track.</li>
+      <li>To save or update drafts and organize mail. The app can change read status; archive messages or restore them to the Inbox; apply or remove Gmail labels; move Microsoft messages between permitted folders; and create the two labels or folders "Assistant - Read Later" and "Assistant - Records". One approved organization batch covers at most 50 messages in a single account.</li>
+    </ul>
+    <p>Every mailbox change requires a preview followed by a separate confirmation step tied to that exact proposed change. The developer reviews and approves the change through the AI client. The app validates the confirmation the AI client supplies; it does not independently verify that a person approved it. The app provides no automatic rollback. Message organization can be changed again through the email provider, and created labels or folders must be removed there. Updating a draft overwrites its previous content; the app keeps no copy for recovery.</p>
+    <p>The app provides no tools to send messages, send replies or forwards, move messages to Trash, or delete messages. These are restrictions of the app; the provider permissions above may allow additional operations.</p>
+
+    <h2>Sharing with the AI service</h2>
+    <p>The app returns email content and metadata (including subjects, senders, recipients, snippets, and bodies) to the developer's AI client. The AI client may send those results to its configured AI service (Anthropic or OpenAI, depending on the AI client in use) for email review, summaries, briefings, follow-up tracking, and drafting, including scheduled reviews the developer has set up. This processing can happen outside the developer's computer.</p>
+    <p>Google user data, including summaries and other data derived from it, is used only for the developer's own email-assistance features. It is not used, retained, or transferred to develop, train, or improve generalized or non-personalized AI or machine-learning models. Any AI service that receives this data is used under terms and settings consistent with these restrictions.</p>
+    <p>Apart from this, the app does not sell, rent, or share Google or Microsoft user data, and does not use it for advertising. No other data leaves the developer's computer except requests to Google and Microsoft themselves.</p>
+
+    <h2>Storage and retention</h2>
+    <ul>
+      <li><strong>Credentials:</strong> OAuth tokens are stored in the macOS Keychain on the developer's computer. The OAuth client configuration is stored in local configuration files.</li>
+      <li><strong>Email content:</strong> the app's local database and diagnostic logs never contain message subjects, snippets, correspondent lists, bodies, or draft content. The app processes content in memory and returns results to the AI client. Approved drafts are saved in the selected Google or Microsoft mailbox.</li>
+      <li><strong>Local database:</strong> hashed message and thread references, account aliases, follow-up classifications and confidence scores, dates, scan progress, and operation and audit metadata. Records of completed changes also contain the mailbox address, provider identifiers of the affected items, and their resulting labels, folders, or status; they ensure that the same approval cannot be applied twice.</li>
+      <li><strong>Diagnostic logs:</strong> operational metadata such as timestamps, event types, account aliases, providers, actions, outcomes, counts, and durations. Up to 14 rotated daily log files are kept, plus the current one; because rotation happens when new entries are written, an inactive file can remain longer than 14 days.</li>
+      <li><strong>Retention:</strong> persistent local metadata has no automatic age-based deletion and remains until the developer removes it. Temporary scan bookkeeping is cleared during normal operation. Credentials remain until the developer removes them.</li>
+      <li><strong>AI client and AI service:</strong> these may separately retain conversations, tool results, and generated content under their own settings and policies.</li>
+    </ul>
+    <p>The developer operates no remote servers for the app; its server runs locally on the developer's computer.</p>
+
+    <h2>Google API Services User Data Policy</h2>
+    <p>Personal Email Assistant's use and transfer to any other app of information received from Google APIs will adhere to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+    <h2>Revoking access and deleting data</h2>
+    <ul>
+      <li><strong>Disconnect an account:</strong> remove its saved credentials with <code>email-personal-auth forget ALIAS</code>, then revoke the app at <a href="https://myaccount.google.com/connections">Google Account → Third-party apps &amp; services</a> or <a href="https://account.live.com/consent/Manage">Microsoft account → App permissions</a> (organizational Microsoft accounts can also be revoked by an administrator). Neither step deletes local metadata or drafts already saved in the mailbox.</li>
+      <li><strong>Delete local data:</strong> after stopping the app, remove its state directory <code>~/Library/Application Support/email-personal-mcp/</code> and logs <code>~/Library/Logs/email-personal-mcp/</code>, and any remaining macOS Keychain entries under the service <code>email-personal-mcp</code>.</li>
+      <li><strong>AI history:</strong> conversations and results held by the AI client or AI service are managed separately, through those products.</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>Before introducing new access to Google user data, or a materially different use or sharing of it, the developer will update this policy and give consent before the new processing begins. The effective date above changes whenever this policy does.</p>
+
+    <h2>Contact</h2>
+    <p>To contact the developer, use the support email shown on this app&#8217;s Google sign-in screen.</p>
+  </main>
+  <footer><a href="./">Personal Email Assistant</a></footer>
+</body>
+</html>
